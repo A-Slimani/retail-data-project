@@ -1,6 +1,7 @@
 #!/bin/bash
 
-$PROJECT_DIR = /home/aboud/programming/retail-data-project
+# PROJECT_DIR="/home/aboud/programming/retail-data-project"
+PROJECT_DIR="/Users/aboud/programming/retail-data-project"
 
 cd $PROJECT_DIR 
 
