@@ -63,7 +63,7 @@ ITEM_PIPELINES = {
 }
 
 GCS_BUCKET_NAME = 'retail-data-bucket-01'
-GCS_CREDENTIALS_PATH = '../retail-data-project-486911-52897f5a1937.json'
+GCS_CREDENTIALS_PATH = '../retail-data-project-486911-5521d4437893.json'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
