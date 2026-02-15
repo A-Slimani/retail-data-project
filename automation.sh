@@ -16,3 +16,7 @@ cd retail_scraper
 
 scrapy crawl mmafightstore-wrestling-shoes -s LOG_FILE=$PROJECT_DIR/logs/scrapy.logs
 
+cd ../retaildbt 
+
+dbt run 
+
