@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# PROJECT_DIR="/home/aboud/programming/retail-data-project"
-PROJECT_DIR="/Users/aboud/programming/retail-data-project"
+OS_NAME=$(uname)
+
+if [ "$OS_NAME" = "Darwin" ]; then
+  PROJECT_DIR="/Users/aboud/programming/retail-data-project"
+else
+  PROJECT_DIR="/home/aboud/programming/retail-data-project"
+fi
 
 cd $PROJECT_DIR 
 
