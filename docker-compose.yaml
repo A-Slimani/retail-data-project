@@ -6,10 +6,8 @@ services:
     command:
       - serve
     environment:
-      - NTFY_BASE_URL=http://localhost:8080
-      - NTFY_CACHE_FILE=/var/cache/ntfy/cache.db
-      - NTFY_AUTH_FILE=/var/cache/ntfy/auth.db
-      - NTFY_AUTH_DEFAULT_ACCESS=deny-all
+      - NTFY_BASE_URL=http://localhost:8081
+      - NTFY_AUTH_DEFAULT_ACCESS=read-write
     ports:
       - "8080:80"
     volumes:
