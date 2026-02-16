@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  ntfy:
+    image: binwiederhier/ntfy
+    container_name: ntfy
+    command:
+      - serve
+    environment:
+      - NTFY_BASE_URL=http://localhost:8080
+      - NTFY_CACHE_FILE=/var/cache/ntfy/cache.db
+      - NTFY_AUTH_FILE=/var/cache/ntfy/auth.db
+      - NTFY_AUTH_DEFAULT_ACCESS=deny-all
+    ports:
+      - "8080:80"
+    volumes:
+      - ./ntfy-cache:/var/cache/ntfy
+    restart: unless-stopped
