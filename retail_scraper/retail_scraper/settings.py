@@ -27,7 +27,7 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 1
 DOWNLOAD_DELAY = 1
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+COOKIES_ENABLED = True 
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -88,3 +88,5 @@ GCS_CREDENTIALS_PATH = '../retail-data-project-486911-5521d4437893.json'
 
 # Set settings whose default value is deprecated to a future-proof value
 FEED_EXPORT_ENCODING = "utf-8"
+
+HTTPERROR_ALLOWED_CODES = [403]
