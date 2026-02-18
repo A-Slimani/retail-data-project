@@ -1,4 +1,5 @@
-from alerts.mmafightstore import under_150 
+from alerts.mmafightstore import wrestlingshoes_under_100
+from alerts.ntfy_alerts import ntfy_basic
 import subprocess
 import requests
 import platform 
@@ -6,17 +7,6 @@ import os
 
 SERVER = "http://10.0.0.216:8081"
 TOPIC = "alerts"
-
-
-def ntfy_alert(title: str, data: str):
-    requests.post(
-        f"{SERVER}/{TOPIC}",
-        data = data,
-        headers = {
-            "Title": title,
-            "Priority": "default"
-        }
-    )
 
 
 def change_dir(folder: str):
@@ -47,13 +37,13 @@ def run_scraper(scraper_name: str):
     )
 
     if scraper_result.returncode != 0:
-        error_message = f"Error with {scraper_name} scraper:\n{scraper_result.stderr}"
-        ntfy_alert("SCRAPY", error_message)
+        error_message = f"Error with {scraper_name} scraper:\n{scraper_result.stderr}, {scraper_result.stdout}"
+        ntfy_basic("SCRAPY", error_message, SERVER, TOPIC)
         raise RuntimeError(error_message)
 
     success_message = f"Scraped {scraper_name} successfully."
     print(success_message)
-    ntfy_alert("SCRAPY", success_message)
+    ntfy_basic("SCRAPY", success_message, SERVER, TOPIC)
 
 
 def run_dbt():
@@ -66,25 +56,25 @@ def run_dbt():
     
     if dbt_result.returncode != 0:
         error_message = f"Error with dbt transformation:\n{dbt_result.stdout}"
-        ntfy_alert("DBT", error_message)
+        ntfy_basic("DBT", error_message, SERVER, TOPIC)
         raise RuntimeError(error_message)
 
-    success_message = f"dbt transformations ran successfully."
+    success_message = f"DBT transformations ran successfully."
     print(success_message)
-    ntfy_alert("DBT", success_message)
+    ntfy_basic("DBT", success_message, SERVER, TOPIC)
 
 
 def main():
     # scraping / processing data
-    change_dir("retail_scraper")
+    # change_dir("retail_scraper")
     # run_scraper("mmafightstore-wrestling-shoes")
     # run_scraper("running-warehouse")
 
     change_dir("retaildbt")
     # run_dbt()
 
-    #alerts
-    under_150("./feeds/wrestlingshoes.parquet")
+    # alerts
+    wrestlingshoes_under_100()
 
     
 if __name__ == "__main__":

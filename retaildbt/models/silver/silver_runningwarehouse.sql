@@ -1,6 +1,10 @@
-SELECT 
+SELECT
+  model_number,
   name,
-  CAST(REPLACE(price, '$', '') AS DOUBLE) AS price,
-  link
+  link,
+  colour,
+  price,
+  UNNEST(sizes_raw_json.style_69879) AS size,
+  scraped_at
 FROM read_json_auto('gs://retail-data-bucket-01/running-warehouse/*.json')
 

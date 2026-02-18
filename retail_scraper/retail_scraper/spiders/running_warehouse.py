@@ -27,6 +27,7 @@ class RunningWarehouseSpider(scrapy.Spider):
         price = response.xpath("//span[@class='afterpay-full_price']/mark/text()").get()
         scraped_at = str(date.today()) 
         sizes_raw = response.xpath("//table[contains(@class, 'styled_subproduct_list')]/@data-json_style_sort").get()
+        link = response.url 
         
         if sizes_raw:
             sizes_raw_json = json.loads(sizes_raw)
@@ -36,6 +37,7 @@ class RunningWarehouseSpider(scrapy.Spider):
         yield {
            "model_number": model_number,
            "name": name,
+           "link": link,
            "colour": colour,
            "price": price,
            "sizes_raw_json": sizes_raw_json,
