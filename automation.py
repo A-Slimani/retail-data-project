@@ -66,12 +66,12 @@ def run_dbt():
 
 def main():
     # scraping / processing data
-    # change_dir("retail_scraper")
-    # run_scraper("mmafightstore-wrestling-shoes")
-    # run_scraper("running-warehouse")
+    change_dir("retail_scraper")
+    run_scraper("mmafightstore-wrestling-shoes")
+    run_scraper("running-warehouse")
 
     change_dir("retaildbt")
-    # run_dbt()
+    run_dbt()
 
     # alerts
     wrestlingshoes_under_100()
