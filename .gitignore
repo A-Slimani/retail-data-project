@@ -14,3 +14,5 @@ logs/
 *.json
 *.parquet
 *.duckdb
+
+.DS_Store

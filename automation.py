@@ -1,4 +1,6 @@
+from alerts.runningwarehouse import runningwarehouse_under_100
 from alerts.mmafightstore import wrestlingshoes_under_100
+from alerts.paceathletic import paceathletic_under_100 
 from alerts.ntfy_alerts import ntfy_basic
 import subprocess
 import requests
@@ -67,14 +69,17 @@ def run_dbt():
 def main():
     # scraping / processing data
     change_dir("retail_scraper")
-    run_scraper("mmafightstore-wrestling-shoes")
-    run_scraper("running-warehouse")
+    # run_scraper("mmafightstore-wrestling-shoes")
+    # run_scraper("running-warehouse")
+    # run_scraper("pace-athletic")
 
     change_dir("retaildbt")
     run_dbt()
 
     # alerts
     wrestlingshoes_under_100()
+    paceathletic_under_100()
+    runningwarehouse_under_100()
 
     
 if __name__ == "__main__":

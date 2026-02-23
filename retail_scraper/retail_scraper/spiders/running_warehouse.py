@@ -42,4 +42,4 @@ class RunningWarehouseSpider(scrapy.Spider):
            "price": price,
            "sizes_raw_json": sizes_raw_json,
            "scraped_at": scraped_at
-         }
+        }
