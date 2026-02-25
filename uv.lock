@@ -1936,6 +1936,7 @@ name = "retail-data-project"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "click" },
     { name = "dbt-core" },
     { name = "dbt-duckdb" },
     { name = "fastparquet" },
@@ -1949,6 +1950,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "click", specifier = ">=8.3.1" },
     { name = "dbt-core", specifier = ">=1.11.4" },
     { name = "dbt-duckdb", specifier = ">=1.10.0" },
     { name = "fastparquet", specifier = ">=2025.12.0" },

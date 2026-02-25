@@ -1,10 +1,12 @@
 from alerts.runningwarehouse import runningwarehouse_under_100
 from alerts.mmafightstore import wrestlingshoes_under_100
-from alerts.paceathletic import paceathletic_under_100 
+from alerts.paceathletic import paceathletic_under_120
 from alerts.ntfy_alerts import ntfy_basic
+from datetime import date
 import subprocess
 import requests
 import platform 
+import click
 import os
 
 SERVER = "http://10.0.0.216:8081"
@@ -32,7 +34,7 @@ def run_scraper(scraper_name: str):
             "crawl", 
             scraper_name,
             "-s",
-            f"LOG_FILE=../logs/{scraper_name}-scrapy.log"
+            f"LOG_FILE=../logs/{date.today()}-{scraper_name}-scrapy.log"
         ],
         capture_output=True,
         text=True
@@ -66,19 +68,26 @@ def run_dbt():
     ntfy_basic("DBT", success_message, SERVER, TOPIC)
 
 
-def main():
+@click.command()
+@click.option('--mmafightstore', is_flag=True, default=False)
+@click.option('--runningwarehouse', is_flag=True, default=False)
+@click.option('--paceathletic', is_flag=True, default=False)
+def main(mmafightstore, runningwarehouse, paceathletic):
     # scraping / processing data
     change_dir("retail_scraper")
-    # run_scraper("mmafightstore-wrestling-shoes")
-    # run_scraper("running-warehouse")
-    # run_scraper("pace-athletic")
+    if mmafightstore:
+        run_scraper("mmafightstore-wrestling-shoes")
+    if runningwarehouse:
+        run_scraper("running-warehouse")
+    if paceathletic:
+        run_scraper("pace-athletic")
 
     change_dir("retaildbt")
     run_dbt()
 
     # alerts
     wrestlingshoes_under_100()
-    paceathletic_under_100()
+    paceathletic_under_120()
     runningwarehouse_under_100()
 
     

@@ -2,4 +2,4 @@
 
 . .venv/bin/activate
 
-python automation.py
+python automation.py --mmafightstore --runningwarehouse --paceathletic

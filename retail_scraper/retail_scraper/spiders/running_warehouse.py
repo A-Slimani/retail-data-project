@@ -1,3 +1,4 @@
+from scrapy.exceptions import CloseSpider
 from datetime import date
 import scrapy
 import json
@@ -12,7 +13,6 @@ class RunningWarehouseSpider(scrapy.Spider):
         "https://www.runningwarehouse.com.au/Mens_Road_Running_Shoes/catpage-MRDSH.html", 
         "https://www.runningwarehouse.com.au/Mens_Stability_Running_Shoes/catpage-MFSTAB.html"
     ]
-
 
     def parse(self, response):
         shoe_list = response.xpath("//a[@class='cattable-wrap-cell-info']/@href").getall()

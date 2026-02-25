@@ -4,21 +4,21 @@ import duckdb
 SERVER = "http://10.0.0.216:8081"
 TOPIC = "running-shoes"
 
-def paceathletic_under_100():
+def paceathletic_under_120():
     try:
         print("Starting 'running shoes under 100' Alert")
         conn = duckdb.connect("dev.duckdb")
         df = conn.execute(f"""
             SELECT *  
             FROM feed_paceathletic
-            WHERE price <= 100;
+            WHERE price <= 120;
          """).fetchdf()
 
         for index, row in df.iterrows():
             message = f"name: {row['name']}\nprice: {row['price']}"
 
             headers = {
-                "Title": ">=100 Running Shoe Alert",
+                "Title": ">=120 Running Shoe Alert",
                 "Priority": "default",
                 "Click": row['product_link'],
                 "Content-Type": "text/markdown"
@@ -29,7 +29,7 @@ def paceathletic_under_100():
 
     except Exception as e:
         headers = {
-            "Title": ">=100 Running Shoe Alert",
+            "Title": ">=120 Running Shoe Alert",
             "Priority": "default",
             "Content-Type": "text/markdown"
         }

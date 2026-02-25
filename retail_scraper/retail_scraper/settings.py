@@ -42,15 +42,15 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    "retail_scraper.middlewares.RetailScraperSpiderMiddleware": 543,
-#}
+SPIDER_MIDDLEWARES = {
+    "retail_scraper.middlewares.Stop406Middleware": 543,
+}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    "retail_scraper.middlewares.RetailScraperDownloaderMiddleware": 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    "retail_scraper.middlewares.Stop406Middleware": 543,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -91,4 +91,6 @@ GCS_CREDENTIALS_PATH = '../retail-data-project-486911-5521d4437893.json'
 # Set settings whose default value is deprecated to a future-proof value
 FEED_EXPORT_ENCODING = "utf-8"
 
-HTTPERROR_ALLOWED_CODES = [403]
+HTTPERROR_ALLOWED_CODES = [403, 406]
+
+LOG_LEVEL = "DEBUG"
